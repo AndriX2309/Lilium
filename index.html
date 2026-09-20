@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Lilium Candidum – Eleganza Suprema</title>
+
+<!-- FONT ELEGANTE PER IL TESTO (aggiunto) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -308,6 +314,54 @@ h1.visible {
     .container::after {
         height: 30px;
         filter: blur(14px);
+    }
+}
+
+/* ---------------------------------------------------
+   TESTO ELEGANTE (solo paragrafi, elenchi, citazione) — AGGIUNTO
+--------------------------------------------------- */
+p:not(.subtitle),
+ul li {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.95;
+    letter-spacing: 0.02em;
+    color: #4a3438;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+    text-wrap: pretty;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 0.7em;
+    white-space: pre-line; /* rispetta gli a capo che hai scritto nei <li> */
+}
+
+.quote {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-style: italic;
+    font-size: 1.7rem;
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+    color: #b84a7c;
+    margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+    p:not(.subtitle),
+    ul li {
+        font-size: 1.2rem;
+        line-height: 1.8;
+    }
+    .quote {
+        font-size: 1.4rem;
     }
 }
 </style>
