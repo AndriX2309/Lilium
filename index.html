@@ -19,7 +19,6 @@ body {
     scroll-behavior: smooth;
     overflow-x: hidden;
     text-align: center;
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"></svg>');
 }
 
 /* ---------------------------------------------------
@@ -221,14 +220,94 @@ h1.visible {
 }
 
 /* ---------------------------------------------------
-   MOBILE
+   MOBILE — VERSIONE SUPREME OTTIMIZZATA
 --------------------------------------------------- */
 @media (max-width: 600px) {
-    h1 {
-        font-size: 2.4rem;
+
+    body {
+        padding: 0;
+        margin: 0;
+        overflow-x: hidden;
     }
+
+    .container {
+        margin: 20px auto;
+        padding: 25px 18px;
+        border-radius: 18px;
+        animation: pulseBorder 10s infinite ease-in-out, rotateSoft 18s infinite ease-in-out;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+        letter-spacing: 0.10em;
+        margin-bottom: 10px;
+    }
+
+    h1::after {
+        width: 120%;
+        height: 100%;
+        filter: blur(18px);
+    }
+
+    h2::before {
+        width: 140px;
+        height: 40px;
+        filter: blur(14px);
+    }
+
+    h2 {
+        font-size: 1.3rem;
+        padding: 6px 12px;
+    }
+
     .image-box img {
         width: 100%;
+        border-radius: 14px;
+        transform: translateY(40px) scale(0.95);
+    }
+
+    .image-box img.visible {
+        transform: translateY(0) scale(1.02);
+    }
+
+    p, li {
+        font-size: 1rem;
+        line-height: 1.55;
+        padding: 0 4px;
+    }
+
+    .divider {
+        width: 120px;
+        height: 2px;
+        margin: 30px auto;
+    }
+
+    .petal {
+        width: 12px;
+        height: 12px;
+        opacity: 0.55;
+        animation-duration: 10s;
+    }
+
+    body.scrolling-down .petal {
+        animation-duration: 7s;
+    }
+
+    body.scrolling-up .petal {
+        animation-duration: 12s;
+    }
+
+    .fade-scroll {
+        transform: translateY(30px) translateX(-10px) scale(0.98);
+    }
+
+    .fade-scroll.visible {
+        transform: translateY(0) translateX(0) scale(1.01);
+    }
+
+    .container::after {
+        height: 30px;
+        filter: blur(14px);
     }
 }
 </style>
