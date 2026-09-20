@@ -1,254 +1,396 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <title>Lilium Candidum – Eleganza Rosata</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Lilium Candidum – Eleganza Pura</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: "Georgia", serif;
-            background: #fdf7f9;
-            color: #3a2a2a;
-            line-height: 1.7;
-            scroll-behavior: smooth;
-        }
+<style>
+/* ---------------------------------------------------
+   BASE
+--------------------------------------------------- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Georgia", serif;
+    background: #fdf7f9;
+    color: #3a2a2a;
+    line-height: 1.7;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
 
-        .container {
-            max-width: 900px;
-            margin: 60px auto;
-            background: #ffffff;
-            padding: 50px 60px;
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(255, 182, 193, 0.25);
-            border: 1px solid #f3d6dd;
-        }
+/* ---------------------------------------------------
+   PETALI CHE CADONO
+--------------------------------------------------- */
+.petal {
+    position: fixed;
+    top: -10px;
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle, #f7dce6 40%, #e7b7c8 80%);
+    border-radius: 50% 70% 50% 70%;
+    opacity: 0.7;
+    animation: fall 8s linear infinite;
+    pointer-events: none;
+}
 
-        h1 {
-            text-align: center;
-            font-size: 2.8rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            color: #b86c86;
-        }
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(120vh) rotate(360deg); opacity: 0.2; }
+}
 
-        h1 span {
-            border-bottom: 3px solid #e7b7c8;
-            padding-bottom: 6px;
-        }
+/* ---------------------------------------------------
+   CONTAINER CON CORNICI FLOREALI
+--------------------------------------------------- */
+.container {
+    max-width: 900px;
+    margin: 60px auto;
+    background: #ffffff;
+    padding: 50px 60px;
+    border-radius: 28px;
+    box-shadow: 0 20px 60px rgba(255, 182, 193, 0.25);
+    border: 1px solid #f3d6dd;
+    position: relative;
+    overflow: hidden;
+}
 
-        .subtitle {
-            text-align: center;
-            font-size: 1rem;
-            color: #a27a87;
-            margin-bottom: 40px;
-        }
+/* Cornici acquerello */
+.container::before,
+.container::after {
+    content: "";
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Lilium_candidum.jpg/240px-Lilium_candidum.jpg');
+    background-size: cover;
+    opacity: 0.12;
+    filter: blur(1px);
+}
 
-        .image-box {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+.container::before {
+    top: -40px;
+    left: -40px;
+    transform: rotate(-12deg);
+}
 
-        .image-box img {
-            width: 70%;
-            border-radius: 18px;
-            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.35);
-            border: 1px solid #f3d6dd;
-        }
+.container::after {
+    bottom: -40px;
+    right: -40px;
+    transform: rotate(12deg);
+}
 
-        h2 {
-            font-size: 1.3rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: #b86c86;
-            margin-top: 40px;
-            margin-bottom: 10px;
-        }
+/* ---------------------------------------------------
+   TITOLI CON LUCE SOFFUSA
+--------------------------------------------------- */
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: #b86c86;
+    position: relative;
+}
 
-        p {
-            margin-bottom: 14px;
-            color: #4a3a3a;
-        }
+h1 span {
+    padding-bottom: 6px;
+    border-bottom: 3px solid #e7b7c8;
+}
 
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
+h1::after {
+    content: "";
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle, rgba(255,182,193,0.35), transparent 70%);
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: blur(20px);
+    opacity: 0.6;
+}
 
-        ul li {
-            margin-bottom: 8px;
-        }
+/* ---------------------------------------------------
+   LINEE ORNAMENTALI ANIMATE
+--------------------------------------------------- */
+.divider {
+    width: 160px;
+    height: 2px;
+    background: linear-gradient(to right, #e7b7c8, #b86c86, #e7b7c8);
+    margin: 40px auto;
+    border-radius: 2px;
+    animation: glow 3s infinite alternate;
+}
 
-        ul li::before {
-            content: "• ";
-            color: #e7b7c8;
-        }
+@keyframes glow {
+    0% { box-shadow: 0 0 0px #e7b7c8; }
+    100% { box-shadow: 0 0 12px #e7b7c8; }
+}
 
-        .quote {
-            margin-top: 30px;
-            font-style: italic;
-            text-align: center;
-            color: #a27a87;
-        }
+/* ---------------------------------------------------
+   IMMAGINE CON BLOOM
+--------------------------------------------------- */
+.image-box img {
+    width: 70%;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(255, 182, 193, 0.35);
+    border: 1px solid #f3d6dd;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: 1.2s ease;
+}
 
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            font-size: 0.8rem;
-            color: #a27a87;
-            letter-spacing: 0.15em;
-        }
+.image-box img.visible {
+    opacity: 1;
+    transform: scale(1);
+}
 
-        /* VERSIONE MOBILE */
-        @media (max-width: 600px) {
-            .container {
-                margin: 20px;
-                padding: 30px 22px;
-                border-radius: 18px;
-            }
+/* ---------------------------------------------------
+   ANIMAZIONI FADE-IN
+--------------------------------------------------- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+}
 
-            h1 {
-                font-size: 2rem;
-            }
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-            .image-box img {
-                width: 100%;
-                border-radius: 14px;
-            }
+/* ---------------------------------------------------
+   FIORE-BOTTONE
+--------------------------------------------------- */
+.flower-btn {
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, #e7b7c8 40%, #b86c86 90%);
+    border-radius: 50%;
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.4s ease;
+    box-shadow: 0 0 20px rgba(255,182,193,0.4);
+}
 
-            h2 {
-                font-size: 1.1rem;
-            }
+.flower-btn:hover {
+    transform: scale(1.08);
+}
 
-            p, ul li {
-                font-size: 0.95rem;
-            }
-        }
+/* Petali attorno al bottone */
+.flower-btn::before,
+.flower-btn::after {
+    content: "";
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle, #f7dce6, #e7b7c8);
+    border-radius: 50%;
+    opacity: 0.6;
+}
 
-        /* --- ANIMAZIONI --- */
+.flower-btn::before {
+    top: -40px;
+    left: 15px;
+}
 
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
+.flower-btn::after {
+    bottom: -40px;
+    right: 15px;
+}
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+/* ---------------------------------------------------
+   POPUP A FORMA DI FIORE
+--------------------------------------------------- */
+.popup-flower {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, #fff 40%, #f7dce6 100%);
+    border-radius: 50%;
+    padding: 50px;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(255,182,193,0.5);
+    border: 4px solid #e7b7c8;
+    opacity: 0;
+    transition: transform 0.7s cubic-bezier(.17,.67,.83,.67), opacity 0.6s ease;
+    z-index: 999;
+}
 
-        .image-appear {
-            opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 1.2s ease, transform 1.2s ease;
-        }
+/* Petali del popup */
+.popup-flower::before,
+.popup-flower::after {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, #f7dce6, #e7b7c8);
+    border-radius: 50%;
+    opacity: 0.4;
+}
 
-        .image-appear.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
+.popup-flower::before {
+    top: -120px;
+    left: 80px;
+}
 
-    </style>
+.popup-flower::after {
+    bottom: -120px;
+    right: 80px;
+}
+
+/* Apertura */
+.popup-flower.open {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.close-popup {
+    margin-top: 20px;
+    padding: 10px 22px;
+    background: #b86c86;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+/* ---------------------------------------------------
+   MOBILE
+--------------------------------------------------- */
+@media (max-width: 600px) {
+    .container {
+        margin: 20px;
+        padding: 30px 22px;
+        border-radius: 18px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .image-box img {
+        width: 100%;
+    }
+}
+</style>
 </head>
 
 <body>
-    <div class="container fade-in">
-        <h1 class="fade-in"><span>Lilium Candidum</span></h1>
-        <p class="subtitle fade-in">Il giglio bianco – purezza, luce e bellezza eterna</p>
 
-        <!-- Immagine Lilium -->
-        <div class="image-box">
-           <img src="Fioretto.png" alt="Lilium Bianco" class="image-appear">
-        </div>
+<!-- PETALI -->
+<script>
+for (let i = 0; i < 18; i++) {
+    const petal = document.createElement("div");
+    petal.classList.add("petal");
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.animationDelay = Math.random() * 5 + "s";
+    petal.style.opacity = Math.random() * 0.8 + 0.2;
+    document.body.appendChild(petal);
+}
+</script>
 
-        <h2 class="fade-in">Origini e diffusione</h2>
-        <p class="fade-in">
-            Il <strong>Lilium candidum</strong>, conosciuto come giglio bianco o giglio della Madonna, è una delle specie più antiche e simboliche del genere Lilium.
-            Originario del Mediterraneo orientale — Grecia, Siria e Palestina — è coltivato fin dall’antichità per la sua bellezza e il suo profumo intenso.
-            Nei secoli si è diffuso in tutta Europa, soprattutto nei giardini monastici e nei cortili delle chiese, dove veniva considerato un fiore sacro.
-        </p>
+<div class="container fade-in">
 
-        <h2 class="fade-in">Significato e simbolismo</h2>
-        <p class="fade-in">
-            Da sempre associato alla purezza, alla verginità e alla luce spirituale, il giglio bianco rappresenta la Vergine Maria nella tradizione cristiana.
-            Nell’arte rinascimentale, l’arcangelo Gabriele porta un giglio nell’Annunciazione, simbolo della purezza di Maria.
-            Nella mitologia greca si narra che il giglio nacque dalle lacrime di Era, la dea del matrimonio.
-        </p>
+    <h1 class="fade-in"><span>Lilium Candidum</span></h1>
+    <p class="subtitle fade-in">Il giglio bianco – purezza, luce e bellezza eterna</p>
 
-        <h2 class="fade-in">Aspetto botanico</h2>
-        <ul class="fade-in">
-            <li><strong>Famiglia:</strong> Liliaceae</li>
-            <li><strong>Specie:</strong> Lilium candidum</li>
-            <li><strong>Fioritura:</strong> tarda primavera – inizio estate</li>
-            <li><strong>Altezza:</strong> fino a 1,2 metri</li>
-            <li><strong>Fiori:</strong> grandi, bianchi, a tromba, con stami arancio e profumo intenso</li>
-            <li><strong>Foglie:</strong> lanceolate, a rosetta alla base e alternate sul fusto</li>
-            <li><strong>Habitat:</strong> terreni ben drenati, soleggiati, caldi ma non aridi</li>
-        </ul>
+    <div class="divider"></div>
 
-        <p class="fade-in">
-            Pianta perenne bulbosa, rinasce ogni anno dal suo bulbo producendo fiori di straordinaria eleganza.
-        </p>
-
-        <h2 class="fade-in">Proprietà e usi</h2>
-        <p class="fade-in">
-            In passato il giglio bianco veniva impiegato in fitoterapia e cosmesi naturale:
-        </p>
-        <ul class="fade-in">
-            <li>Petali macerati in olio per unguenti lenitivi.</li>
-            <li>Bulbo ricco di mucillagini per calmare irritazioni e favorire la cicatrizzazione.</li>
-            <li>Profumo intenso usato in oli sacri e preparazioni aromatiche.</li>
-        </ul>
-
-        <h2 class="fade-in">Leggende e curiosità</h2>
-        <p class="fade-in">
-            Una leggenda cristiana narra che il giglio bianco nacque dal sudore di Cristo durante la Passione.
-            Nell’antica Grecia era fiore nuziale, simbolo di amore eterno e fertilità.
-            In epoca vittoriana regalare un giglio bianco significava ammirazione sincera e rispetto profondo.
-        </p>
-        <p class="fade-in">
-            È uno dei pochi fiori che unisce sacro e profano, presente nei templi e nei giardini privati.
-            Il suo profumo è stato descritto dai poeti come “l’essenza della luce”.
-        </p>
-
-        <h2 class="fade-in">Curiosità botaniche</h2>
-        <ul class="fade-in">
-            <li>Non tollera il trapianto: preferisce restare nello stesso terreno per anni.</li>
-            <li>I bulbi si piantano poco profondi, diversamente dagli altri gigli.</li>
-            <li>È fototropico: i fiori si orientano verso la luce.</li>
-            <li>In Liguria e Sicilia è ancora coltivato nei giardini storici e monastici.</li>
-        </ul>
-
-        <h2 class="fade-in">In sintesi</h2>
-        <p class="fade-in">
-            Il Lilium bianco è molto più di un fiore: è un simbolo universale di purezza, rinascita e bellezza eterna.
-            Unisce mito, fede e natura in un’unica forma perfetta, che da millenni ispira artisti, poeti e giardinieri.
-        </p>
-
-        <p class="quote fade-in">“Il giglio bianco è la luce che fiorisce.”</p>
-
-        <footer class="fade-in">
-            LILIUM CANDIDUM • PUREZZA • ELEGANZA
-        </footer>
+    <div class="image-box">
+        <img src="Fioretto.png" alt="Lilium Bianco" id="mainImage">
     </div>
 
-    <script>
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.2 });
+    <h2 class="fade-in">Origini e diffusione</h2>
+    <p class="fade-in">
+        Il <strong>Lilium candidum</strong>, conosciuto come giglio bianco o giglio della Madonna...
+    </p>
 
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-        const img = document.querySelector('.image-appear');
-        if (img) observer.observe(img);
-    </script>
+    <div class="divider"></div>
+
+    <h2 class="fade-in">Significato e simbolismo</h2>
+    <p class="fade-in">
+        Da sempre associato alla purezza, alla verginità e alla luce spirituale...
+    </p>
+
+    <div class="divider"></div>
+
+    <h2 class="fade-in">Aspetto botanico</h2>
+    <ul class="fade-in">
+        <li><strong>Famiglia:</strong> Liliaceae</li>
+        <li><strong>Specie:</strong> Lilium candidum</li>
+        <li><strong>Fioritura:</strong> tarda primavera – inizio estate</li>
+        <li><strong>Altezza:</strong> fino a 1,2 metri</li>
+        <li><strong>Fiori:</strong> grandi, bianchi, a tromba...</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h2 class="fade-in">Curiosità</h2>
+
+    <div class="flower-btn" onclick="openPopup()">Curiosità</div>
+
+    <div class="popup-flower" id="popupFlower">
+        <h3>Curiosità sul Lilium</h3>
+        <p>Non tollera il trapianto: preferisce restare nello stesso terreno per anni.</p>
+        <p>I bulbi si piantano poco profondi, diversamente dagli altri gigli.</p>
+        <p>È fototropico: i fiori si orientano verso la luce.</p>
+        <p>In Liguria e Sicilia è ancora coltivato nei giardini storici e monastici.</p>
+        <div class="close-popup" onclick="closePopup()">Chiudi</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 class="fade-in">In sintesi</h2>
+    <p class="fade-in">
+        Il Lilium bianco è molto più di un fiore...
+    </p>
+
+    <p class="quote fade-in">“Il giglio bianco è la luce che fiorisce.”</p>
+
+</div>
+
+<script>
+/* Scroll reveal */
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+observer.observe(document.getElementById("mainImage"));
+
+/* Popup */
+function openPopup() {
+    document.getElementById('popupFlower').classList.add('open');
+}
+
+function closePopup() {
+    document.getElementById('popupFlower').classList.remove('open');
+}
+
+/* Chiusura cliccando fuori */
+document.addEventListener("click", function(e) {
+    const popup = document.getElementById("popupFlower");
+    const button = document.querySelector(".flower-btn");
+
+    if (popup.classList.contains("open") &&
+        !popup.contains(e.target) &&
+        !button.contains(e.target)) {
+        popup.classList.remove("open");
+    }
+});
+</script>
 
 </body>
 </html>
